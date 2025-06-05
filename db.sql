@@ -1,0 +1,24 @@
+CREATE DATABASE finance_tracker;
+
+CREATE TABLE users(
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE income (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  source NUMERIC(10, 2) NOT NULL,
+  amount NUMERIC(10, 2) NOT NULL, 
+  date DATE NOT NULL
+);
+
+CREATE TABLE expenses (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  category VARCHAR(255) NOT NULL,
+  amount NUMERIC(10, 2) NOT NULL, 
+  date DATE NOT NULL
+);

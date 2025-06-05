@@ -1,0 +1,564 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  background-color: #f8fafc;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.header {
+  padding: 20px;
+  border: 1px solid #eee;
+  background-color: #ffff;
+}
+
+.shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: white;
+  transition: box-shadow 0.3s ease;
+}
+
+/* TO HIDE SECTIONS WHEN CLICK ON A SPECIFC SECTION BTN */
+.hidden {
+  display: none;
+}
+
+/* Fade in animation for the sections*/
+.fade-in {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+main {
+  margin-left: 320px; /* Match sidebar width */
+  padding: 20px;
+  width: calc(100% - 320px);
+}
+
+/* /////////////////////////////////////////////// */
+/* HEADINGS */
+
+.heading-tertiary {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: #7a7c7f;
+}
+
+.heading-secondary {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.emoji-heading {
+  padding-left: 10px;
+}
+
+/* /////////////////////////////////////////////// */
+/* SIDEBAR */
+.sidebar {
+  padding: 50px 20px 0 20px;
+  min-width: 250px;
+  width: 20%;
+  background-color: #ffff;
+  position: absolute;
+  height: 140vh;
+  overflow: auto;
+  border: 1px solid #eee;
+}
+
+.sidebar-link.active {
+  background-color: #1a2fdc;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.sidebar-link.active .sidebar-logo,
+.sidebar-link.active .more-width-logo {
+  filter: brightness(0) invert(1);
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #111;
+  padding: 20px;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.more-width-logo {
+  width: 28px;
+  height: 28px;
+}
+
+.sidebar span {
+  font-weight: 600;
+}
+
+.sidebar-logo {
+  width: 24px;
+  height: 21px;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #ccd1f7;
+  border-radius: 10px;
+}
+
+.user {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.user h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.user-img {
+  width: 40%;
+  margin-bottom: 10px;
+}
+
+.logout-link {
+  cursor: pointer;
+}
+
+/* ////////////////////////////////////////////////// */
+/* DASHBOARD SECTION */
+.dashboard-section {
+  padding-left: 30px;
+  margin-top: 10px;
+}
+
+.logo {
+  width: 90%;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  gap: 30px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 30px 90px 30px 30px;
+  margin-bottom: 25px;
+}
+
+/* ////////////////////////////////////////////////// */
+/* RECENT TRANSACTIONS */
+
+.dashboard-transactions-box {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.recent-transactions-container {
+  height: 600px;
+  width: 50%;
+  background-color: #fff;
+  padding: 30px 20px;
+  overflow: scroll;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  overflow-x: hidden;
+}
+
+.recent-transactions-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.see-all a {
+  font-family: "Poppins", sans-serif;
+  background-color: #dee2e6;
+  color: #343a40;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.see-all a:hover {
+  background-color: #e9ecef;
+}
+
+.transactions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recent-transactions-link {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.recent-transactions {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.transcation-name {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.income-date,
+.transaction-date {
+  color: #7a7c7f;
+}
+
+.transaction-value {
+  padding: 10px 20px;
+  color: #c92a2a;
+  border-radius: 5px;
+  background-color: #faeaea;
+}
+
+.transactions-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  align-items: center;
+}
+
+.financial-overview {
+  height: 600px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 20px 30px;
+  width: 50%;
+}
+
+/* ////////////////////////////////////////////////// */
+/* INCOME SECTION */
+
+.income-sources-container {
+  background-color: #fff;
+  border: 1px #eee;
+  padding: 30px 20px;
+}
+
+.income-overview {
+  display: flex;
+  background-color: #fff;
+  justify-content: space-between;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+}
+
+.income-sources-headings {
+  display: flex;
+  justify-content: space-between;
+}
+
+.income-overview a {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  height: 45px;
+  color: #1a2fdc;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #e8eafc;
+  padding: 10px 15px 10px 15px;
+}
+
+.income-overview a:hover {
+  background-color: #bac1f5;
+  transition: all 0.5s;
+}
+
+.income-sources-container a {
+  font-family: "Poppins", sans-serif;
+  background-color: #dee2e6;
+  color: #343a40;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.income-sources-container a:hover {
+  background-color: #ebebec;
+  transition: all 0.5s;
+}
+
+.income-sources-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow: scroll;
+  height: 400px;
+  margin-top: 20px;
+}
+
+.income-column {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.income-icon {
+  background-color: #dee2e6;
+  font-size: 35px;
+  border-radius: 50%;
+}
+
+.income-name {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.income-value {
+  padding: 10px 20px;
+  color: #2b8a3e;
+  border-radius: 5px;
+  background-color: #d5e8d8;
+}
+/* /////////////////////////////////////////////// */
+/* ADD-INCOME FORM */
+.add-income {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  z-index: 20; /* higher than overlay */
+  width: 50%;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.add-income-form input {
+  font-family: "Poppins", sans-serif;
+  padding: 10px 20px;
+  background-color: #dee2e6;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.close {
+  width: 5%;
+  cursor: pointer;
+}
+
+.income-source-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  border-bottom: #adb5bd solid 1px;
+  width: 100%;
+}
+
+.income-form-heading {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.add-income-form-btn,
+.add-income-btn {
+  font-family: "Poppins", sans-serif;
+  display: block;
+  background-color: #1a2fdc;
+  color: #fff;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-income-form-btn:hover,
+.add-income-btn:hover {
+  background-color: #4859e3;
+  transition: 0.3s all;
+}
+
+/* /////////////////////////////////////////////// */
+/* EXPENSE SECTION */
+.expense-sources-container {
+  background-color: #fff;
+  border: 1px #eee;
+  padding: 30px 20px;
+}
+
+.expense-overview {
+  display: flex;
+  background-color: #fff;
+  justify-content: space-between;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+}
+
+.expense-sources-headings {
+  display: flex;
+  justify-content: space-between;
+}
+
+.expense-overview a {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  height: 45px;
+  color: #1a2fdc;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #e8eafc;
+  padding: 10px 15px 10px 15px;
+}
+
+.expense-overview a:hover {
+  background-color: #bac1f5;
+  transition: all 0.5s;
+}
+
+.expense-sources-container a {
+  font-family: "Poppins", sans-serif;
+  background-color: #dee2e6;
+  color: #343a40;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.expense-sources-container a:hover {
+  background-color: #ebebec;
+  transition: all 0.5s;
+}
+
+.expense-sources-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow: scroll;
+  height: 400px;
+  margin-top: 20px;
+}
+
+.expense-column {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.expense-icon {
+  background-color: #dee2e6;
+  font-size: 35px;
+  border-radius: 50%;
+}
+
+.expense-name {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.expense-value {
+  padding: 10px 20px;
+  color: #c92a2a;
+  border-radius: 5px;
+  background-color: #faeaea;
+}
+
+/* /////////////////////////////////////////////// */
+/* ADD EXPENSES FORM */
+
+.add-expenses {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  z-index: 20; /* higher than overlay */
+  width: 50%;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.add-expense-form-btn,
+.add-expanses-btn {
+  font-family: "Poppins", sans-serif;
+  display: block;
+  background-color: #1a2fdc;
+  color: #fff;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-expense-form-btn:hover {
+  background-color: #4859e3;
+  transition: 0.3s all;
+}
+
+.add-expenses-form input {
+  font-family: "Poppins", sans-serif;
+  padding: 10px 20px;
+  background-color: #dee2e6;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+.expenses-sources-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  border-bottom: #adb5bd solid 1px;
+  width: 100%;
+}
+.expense-form-heading {
+  font-weight: 500;
+  margin-bottom: 8px;
+}

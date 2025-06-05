@@ -1,0 +1,163 @@
+/* Reset & Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Signup Container */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1000px;
+  background: #fff; /* Light transparency */
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Signup Box */
+.wrapper {
+  width: 420px;
+  padding: 30px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Signup Heading */
+.wrapper h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+/* Input Fields */
+.input-box {
+  position: relative;
+  margin: 15px 0;
+  width: 100%;
+}
+
+.input-box input {
+  width: 100%;
+  height: 50px;
+  padding: 12px 50px 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  outline: none;
+}
+
+.input-box input::placeholder {
+  color: #e0e0e0;
+}
+
+/* Input Box Icons */
+.input-box box-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  color: #fff;
+}
+
+/* Remember Me & Terms */
+.remember-forgot {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.remember-forgot label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.remember-forgot input {
+  accent-color: #fff;
+}
+
+/* Signup Button */
+.btn {
+  width: 100%;
+  height: 50px;
+  background: #27ae60;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #68c690;
+}
+
+/* Register Link */
+.register-link {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register-link a {
+  color: #ff4b2b;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Vector Illustration */
+.image-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-box img {
+  max-width: 100%;
+  height: auto;
+  width: 400px;
+  border-radius: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .image-box {
+    display: none;
+  }
+}

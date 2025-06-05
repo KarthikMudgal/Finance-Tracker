@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+      defer
+      src="{{ url_for('static', filename='js/script.js') }}"
+    ></script>
+    <title>The Finance Tracker</title>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="heading-primary">Finance Tracker</h1>
+    </header>
+    <div class="sidebar">
+      <div class="user">
+        <img
+          src="{{ url_for('static', filename='images/user.png') }}"
+          alt="user-image"
+          class="user-img"
+        />
+        <h3>{{ username }}</h3>
+      </div>
+      <a class="sidebar-link active" data-target="dashboard" href="#"
+        ><img
+          src="{{ url_for('static', filename='images/logos/dashboard.png') }}"
+          alt="dashboard-logo"
+          class="sidebar-logo"
+        /><span>Dashboard</span></a
+      >
+      <a class="sidebar-link" data-target="income" href="#"
+        ><img
+          src="{{ url_for('static', filename='images/logos/income.png') }}"
+          alt="income-logo"
+          class="more-width-logo"
+        /><span>Income</span></a
+      >
+      <a class="sidebar-link" data-target="expense" href="#">
+        <img
+          src="{{ url_for('static', filename='images/logos/expense.png') }}"
+          alt="expense-logo"
+          class="more-width-logo"
+        /><span>Expense</span>
+      </a>
+      <a class="sidebar-link logout-link" href="{{ url_for('logout') }}">
+        <img
+          src="{{ url_for('static', filename='images/logos/logout.png') }}"
+          alt="logout-logo"
+          class="sidebar-logo"
+        /><span>Logout</span></a
+      >
+    </div>
+    <main>
+      <section id="dashboard" class="page-section dashboard-section">
+        <div class="content">
+          <div class="balance-box card shadow">
+            <div class="icon">
+              <img
+                src="{{ url_for('static', filename='images/logos/balance-logo.png') }}"
+                alt="balance logo"
+                class="logo"
+              />
+            </div>
+            <div class="calculations">
+              <h3 class="heading-tertiary">Total Balance</h3>
+              <h2 class="total-balance">₹{{ balance }}</h2>
+            </div>
+          </div>
+          <div class="income-box card shadow">
+            <div class="icon">
+              <img
+                src="{{ url_for('static', filename='images/logos/income-logo.png') }}"
+                alt="income logo"
+                class="logo"
+              />
+            </div>
+            <div class="calculations">
+              <h3 class="heading-tertiary">Total Income</h3>
+              <h2 class="total-balance">₹{{ total_income }}</h2>
+            </div>
+          </div>
+          <div class="expense-box card shadow">
+            <div class="icon">
+              <img
+                src="{{ url_for('static', filename='images/logos/expense-logo.png') }}"
+                alt="expense-logo"
+                class="logo"
+              />
+            </div>
+            <div class="calculations">
+              <h3 class="heading-tertiary">Total Expense</h3>
+              <h2 class="total-balance">₹{{ total_expense }}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard-transactions-box">
+          <div class="recent-transactions-container shadow">
+            <div class="recent-transactions">
+              <div class="recent-transactions-content">
+                <div class="recent-transactions-heading">
+                  <h2 class="heading-secondary">Recent Transactions</h2>
+                </div>
+                <div class="see-all">
+                  <a href="#">See all →</a>
+                </div>
+              </div>
+              <div class="transactions-container">
+                {% for transaction in transactions %}
+                <div class="transactions-row">
+                  <div class="transcation-name">
+                    {{ transaction.source or transaction.category }}
+                  </div>
+                  <div class="transaction-date">{{ transaction.date }}</div>
+                  <div class="transaction-value">
+                    {{ '🔺₹' + transaction.amount|string if transaction.type ==
+                    'income' else '🔻₹' + transaction.amount|string }}
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="financial-overview shadow">
+            <h2 class="heading-secondary">Financial Overview</h2>
+            <canvas id="overviewChart"></canvas>
+          </div>
+        </div>
+      </section>
+      <section id="income" class="page-section income-section hidden">
+        <div class="income-overview shadow">
+          <div class="income-graph">
+            <h2 class="heading-secondary">Income Overview</h2>
+            <h3 class="heading-tertiary">
+              Track your earnings over time and analyze your income trends
+            </h3>
+            <canvas id="incomeChart"></canvas>
+          </div>
+          <a class="add-income-btn" href="#">+ Add Income</a>
+        </div>
+        <div class="income-sources-container shadow">
+          <div class="income-sources-headings">
+            <h2 class="heading-secondary">Income Sources</h2>
+            <a
+              href="{{ url_for('download_transactions') }}"
+              class="download-btn"
+              >Download</a
+            >
+          </div>
+          <div class="income-sources-column">
+            {% for income in incomes %}
+            <div class="income-column">
+              <div class="income-name">{{ income.source }}</div>
+              <div class="income-date">{{ income.date }}</div>
+              <div class="income-value">💹 ₹{{ income.amount }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      <section id="expense" class="page-section expense-section hidden">
+        <div class="expense-overview shadow">
+          <div class="expense-graph">
+            <h2 class="heading-secondary">Expense Overview</h2>
+            <h3 class="heading-tertiary">
+              Track your spending trends over time and gain insights into where
+              your money goes.
+            </h3>
+            <canvas id="expenseChart"></canvas>
+          </div>
+          <a class="add-expenses-btn" href="#">+ Add Expense</a>
+        </div>
+        <div class="expense-sources-container shadow">
+          <div class="expense-sources-headings">
+            <h2 class="heading-secondary">Expense Sources</h2>
+            <a
+              href="{{ url_for('download_transactions') }}"
+              class="download-btn"
+              >Download</a
+            >
+          </div>
+          <div class="expense-sources-column">
+            {% for expense in expenses %}
+            <div class="expense-column">
+              <div class="expense-name">{{ expense.category }}</div>
+              <div class="expense-date">{{ expense.date }}</div>
+              <div class="expense-value">-₹{{ expense.amount }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      <div class="add-income hidden">
+        <div class="income-source-heading">
+          <h2 class="heading-secondary">Add Income</h2>
+          <img
+            src="{{ url_for('static', filename='images/close.png') }}"
+            alt="close"
+            class="close"
+          />
+        </div>
+        <form class="add-income-form" id="add-income-form">
+          <h4 class="heading-4 income-form-heading">Income Source</h4>
+          <input
+            type="text"
+            name="source"
+            placeholder="Freelance, Salary, etc"
+            required
+          />
+          <h4 class="heading-4 income-form-heading">Amount</h4>
+          <input type="number" name="amount" required />
+          <h4 class="heading-4 income-form-heading">Date</h4>
+          <input type="date" name="date" required />
+          <button type="submit" class="add-income-form-btn">Add Income</button>
+        </form>
+      </div>
+      <div class="add-expenses hidden">
+        <div class="expenses-sources-heading">
+          <h2 class="heading-secondary">Add Expenses</h2>
+          <img
+            src="{{ url_for('static', filename='images/close.png') }}"
+            alt="close"
+            class="close"
+          />
+        </div>
+        <form class="add-expenses-form" id="add-expense-form">
+          <h4 class="heading-4 expense-form-heading">Category</h4>
+          <input
+            type="text"
+            name="category"
+            placeholder="Rent, Groceries, etc"
+            required
+          />
+          <h4 class="heading-4 expense-form-heading">Amount</h4>
+          <input type="number" name="amount" required />
+          <h4 class="heading-4 expense-form-heading">Date</h4>
+          <input type="date" name="date" required />
+          <button type="submit" class="add-expense-form-btn">
+            Add Expense
+          </button>
+        </form>
+      </div>
+    </main>
+    <div class="overlay hidden"></div>
+
+    <script id="income-data" type="application/json">
+      {{ incomes | tojson | safe }}
+    </script>
+    <script id="expense-data" type="application/json">
+      {{ expenses | tojson | safe }}
+    </script>
+    <script id="summary-data" type="application/json">
+      {
+        "balance": {{ balance }},
+        "total_income": {{ total_income }},
+        "total_expense": {{ total_expense }}
+      }
+    </script>
+  </body>
+</html>
