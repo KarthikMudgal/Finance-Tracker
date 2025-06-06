@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (response.ok) {
         // Get fresh data from server
-        const updatedResponse = await fetch("/api/income?t=" + Date.now());
+        const updatedResponse = await fetch("/data/income?t=" + Date.now());
         if (updatedResponse.ok) {
           incomeData = await updatedResponse.json();
           renderIncomeChart();
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (response.ok) {
         // Get fresh data from server
-        const updatedResponse = await fetch("/api/expenses?t=" + Date.now());
+        const updatedResponse = await fetch("/data/expenses?t=" + Date.now());
         if (updatedResponse.ok) {
           expenseData = await updatedResponse.json();
           renderExpenseChart();

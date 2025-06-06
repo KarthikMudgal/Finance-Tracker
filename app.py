@@ -224,7 +224,7 @@ def add_expense():
         cursor.close()
         conn.close()
 
-@app.route('/income/income')
+@app.route('/data/income')
 def income_data():
     if 'user_id' not in session:
         print("Not logged in, rejecting income data request")
@@ -243,7 +243,7 @@ def income_data():
         cursor.close()
         conn.close()
 
-@app.route('/expense/expenses')
+@app.route('/data/expenses')
 def expenses_data():
     if 'user_id' not in session:
         print("Not logged in, rejecting expenses data request")
