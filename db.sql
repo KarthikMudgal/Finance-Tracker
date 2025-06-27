@@ -10,7 +10,6 @@ CREATE TABLE users(
 CREATE TABLE income (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
-  source NUMERIC(10, 2) NOT NULL,
   amount NUMERIC(10, 2) NOT NULL, 
   date DATE NOT NULL
 );
